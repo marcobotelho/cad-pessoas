@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>Cadastro Endereco</title>
+</h:head>
+
+<h:body>
+
+	<ui:include src="template/menu.xhtml"></ui:include>
+    
+	<p:panel header="Cadastro Endereco">
+	    <h:form id="formCadastro">
+	    
+		        <p:growl id="growl1" showDetail="true" />
+		        
+					<h:inputHidden value="#{enderecoBean.endereco.pessoa.id}" ></h:inputHidden>
+					<h:inputHidden value="#{enderecoBean.endereco.id}" ></h:inputHidden>
+									
+		        <h:panelGrid id="grid" columns="9" cellpadding="4" >
+		        
+		            <p:outputLabel for="pessoaNome" value="Nome:"/>
+		            <p:inputText id="pessoaNome" disabled="true" value="#{enderecoBean.endereco.pessoa.nome}"  size="40"/>
+		            <p:message for="pessoaNome" />
+					
+		            <p:outputLabel for="cep" value="CEP:"/>
+		            <p:inputText id="cep" required="true" value="#{enderecoBean.endereco.cep}" requiredMessage="Cep é obrigatório!">
+		            	<p:ajax event="blur" update="@form" process="@this" listener="#{enderecoBean.buscaEnderecoByCep}" />
+		            </p:inputText>
+		            <p:message for="cep" />
+		
+		            <p:outputLabel for="estado" value="Estado:"/>
+		            <p:inputText id="estado" required="true" value="#{enderecoBean.endereco.estado}" requiredMessage="Estado é obrigatório!"/>
+		            <p:message for="estado" />
+		            
+		            <p:outputLabel for="cidade" value="Cidade:"/>
+		            <p:inputText id="cidade" required="true" value="#{enderecoBean.endereco.cidade}" requiredMessage="Cidade é obrigatório!"/>
+		            <p:message for="cidade" />
+		            
+		            <p:outputLabel for="bairro" value="Bairro:"/>
+		            <p:inputText id="bairro" required="true" value="#{enderecoBean.endereco.bairro}" requiredMessage="Bairro é obrigatório!"/>
+		            <p:message for="bairro" />
+		            
+		            <p:outputLabel for="logradouro" value="Logradouro:"/>
+		            <p:inputText id="logradouro" required="true" value="#{enderecoBean.endereco.logradouro}" requiredMessage="Logradouro é obrigatório!"/>
+		            <p:message for="logradouro" />
+		            
+		            <p:outputLabel for="numero" value="Número:"/>
+		            <p:inputText id="numero" required="true" value="#{enderecoBean.endereco.numero}" requiredMessage="Número é obrigatório!"/>
+		            <p:message for="numero" />
+		            
+		        </h:panelGrid>
+		        <br/>
+		        <h:panelGrid id="gridBtn" columns="3" cellpadding="4">
+		           	<p:commandButton id="btnSalvar" value="Salvar" action="#{enderecoBean.salvar}" update="formLista formCadastro" styleClass="ui-button-primary" />
+		           	<p:commandButton id="btnLimpar" value="Limpar" action="#{enderecoBean.limpar}" immediate="true" update="formCadastro" styleClass="ui-button-secondary" />
+		           	<p:commandButton id="btnExcluir" value="Excluir" action="#{enderecoBean.excluir}" update="formCadastro formLista" styleClass="ui-button-danger" />        
+		        </h:panelGrid>
+    	</h:form>
+	</p:panel>
+
+	<p:panel header="Lista Endereco">
+    	<h:form id="formLista">
+    	
+    		<p:growl id="growl2" showDetail="true" />
+    		
+    		<p:dataTable value="#{enderecoBean.enderecos}" var="u" 
+    			stripedRows="true" scrollable="true" scrollHeight="250" allowUnsorting="true" sortMode="single"> 
+				
+				<p:column headerText="Id" >
+                <h:outputText value="#{u.id}" />
+	            </p:column>
+	
+	            <p:column headerText="Cep">
+	                <h:outputText value="#{u.cep}" />
+	            </p:column>
+	
+	            <p:column headerText="Estado">
+	                <h:outputText value="#{u.estado}" />
+	            </p:column>
+	
+	            <p:column headerText="Cidade">
+	                <h:outputText value="#{u.cidade}" />
+	            </p:column>
+	            
+	            <p:column headerText="Logradouro">
+	                <h:outputText value="#{u.logradouro}" />
+	            </p:column>
+	            
+	            <p:column headerText="Numero">
+	                <h:outputText value="#{u.numero}" />
+	            </p:column>
+	            
+	            <p:column headerText="Ação">
+	                <p:commandButton icon="pi pi-file-edit" styleClass="rounded-button ui-button-help" title="Editar"
+	                	 update="formCadastro" action="#{enderecoBean.editar(u.id)}"/>
+   					<p:commandButton icon="pi pi-times" styleClass="rounded-button ui-button-danger" title="Excluir" style="margin-left:5px" 
+   						update="formCadastro formLista" action="#{enderecoBean.excluir(u.id)}"/>
+	            </p:column>
+			</p:dataTable>
+    	</h:form>
+	</p:panel>
+
+</h:body>
+</html>

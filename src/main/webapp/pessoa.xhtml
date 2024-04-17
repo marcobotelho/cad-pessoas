@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>Cadastro Usuário</title>	
+</h:head>
+
+<h:body>
+
+	<ui:include src="template/menu.xhtml"></ui:include>
+    
+	<p:panel header="Cadastro Pessoa">
+	    <h:form id="formDetail">
+	    	    
+		        <p:growl id="growl1" showDetail="true" autoUpdate="true"/>
+		        
+		        <h:panelGrid id="grid" columns="12" cellpadding="4" >
+		
+					<h:inputHidden value="#{pessoaBean.pessoa.id}" ></h:inputHidden>
+					
+		            <p:outputLabel for="nome" value="Nome:"/>
+		            <p:inputText id="nome" required="true" value="#{pessoaBean.pessoa.nome}" requiredMessage="Nome é obrigatório!" size="60"/>
+		            <p:message for="nome" />
+
+		            <p:outputLabel for="idade" value="Idade:"/>
+		            <p:inputNumber id="idade" required="true" value="#{pessoaBean.pessoa.idade}" requiredMessage="Idade é obrigatório!"  size="3"/>
+		            <p:message for="idade" />
+
+		            <p:outputLabel for="@next" value="Sexo:"/>
+                	<p:selectOneMenu id="sexo" value="#{pessoaBean.pessoa.sexo}" >
+                		<f:selectItem itemLabel="Selecione Sexo" itemValue=""/>
+                    	<f:selectItem itemLabel="MASCULINO" itemValue="MASCULINO"/>
+                    	<f:selectItem itemLabel="FEMININO" itemValue="FEMININO"/>
+	                    <!-- <f:selectItem itemLabel="Selecione Sexo" itemValue="#{null}" noSelectionOption="true"/>
+	                    <f:selectItems value="#{pessoaBean.ufs}" var="uf" itemLabel="#{uf.sigla}" itemValue="#{uf.id}"/> -->
+                	</p:selectOneMenu>
+                	<p:message for="sexo" />
+
+				
+		        </h:panelGrid>
+		        <br/>
+		        <h:panelGrid id="gridBtn" columns="3" cellpadding="4">
+		           	<p:commandButton id="btnSalvar" value="Salvar" action="#{pessoaBean.salvar}" update="formDetail formList" styleClass="ui-button-primary" />
+		           	<p:commandButton id="btnLimpar" value="Limpar" action="#{pessoaBean.limpar}" update="formDetail" styleClass="ui-button-secondary" />
+		           	<p:commandButton id="btnExcluir" value="Excluir" action="#{pessoaBean.excluir}" update="formList formDetail" styleClass="ui-button-danger" />        
+		        </h:panelGrid>
+    	</h:form>
+	</p:panel>
+	
+	<p:panel header="Lista Pessoas">
+		<h:form id="formList">
+    	
+    		<p:growl id="growl2" showDetail="true" />
+    		
+    		<p:dataTable value="#{pessoaBean.pessoas}" var="p" size="small" 
+    			stripedRows="true" scrollable="true" scrollHeight="250" allowUnsorting="true" sortMode="single"
+    			rows="5" lazy="true" paginator="true" paginatorPosition="bottom" id="dataTableUsuario"> 
+				
+				<p:column headerText="Id" >
+                <h:outputText value="#{p.id}" />
+	            </p:column>
+	
+	            <p:column headerText="Nome" >
+	                <h:outputText value="#{p.nome}" />
+	            </p:column>
+	            
+				<p:column headerText="Idade">
+	                <h:outputText value="#{p.idade}" />
+	            </p:column>
+
+				<p:column headerText="Sexo">
+	                <h:outputText value="#{p.sexo}" />
+	            </p:column>
+
+ 	            <p:column headerText="Ação" width="200px">
+ 	            	<p:commandButton icon="pi pi-file-edit" styleClass="rounded-button ui-button-help" title="Editar"
+	                	 update="formDetail" action="#{pessoaBean.editar(p)}"/>
+   					<p:commandButton icon="pi pi-times" styleClass="rounded-button ui-button-danger" title="Excluir" style="margin-left:5px" 
+   						update="formDetail formList" action="#{pessoaBean.excluirPorId(p.id)}"/>  						
+   					<p:linkButton icon="pi pi-home" styleClass="rounded-button ui-button-warning" title="Endereços" style="margin-left:5px" 
+   						imediate="true" outcome="endereco.jsf" >
+   						<f:param name="pessoaId" value="#{p.id}"/>
+   					</p:linkButton>
+	            </p:column> 
+			</p:dataTable>
+ 		</h:form>
+    	
+	</p:panel>
+	
+</h:body>
+</html>
