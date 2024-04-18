@@ -22,36 +22,36 @@
 					<h:inputHidden value="#{enderecoBean.endereco.pessoa.id}" ></h:inputHidden>
 					<h:inputHidden value="#{enderecoBean.endereco.id}" ></h:inputHidden>
 									
-		        <h:panelGrid id="grid" columns="9" cellpadding="4" >
+		        <h:panelGrid id="grid" columns="12" cellpadding="4" >
 		        
 		            <p:outputLabel for="pessoaNome" value="Nome:"/>
-		            <p:inputText id="pessoaNome" disabled="true" value="#{enderecoBean.endereco.pessoa.nome}"  size="40"/>
+		            <p:inputText id="pessoaNome" disabled="true" value="#{enderecoBean.endereco.pessoa.nome}" size="40"/>
 		            <p:message for="pessoaNome" />
 					
 		            <p:outputLabel for="cep" value="CEP:"/>
-		            <p:inputText id="cep" required="true" value="#{enderecoBean.endereco.cep}" requiredMessage="Cep é obrigatório!">
+		            <p:inputText id="cep" required="true" value="#{enderecoBean.endereco.cep}" requiredMessage="Cep é obrigatório!" size="40">
 		            	<p:ajax event="blur" update="@form" process="@this" listener="#{enderecoBean.buscaEnderecoByCep}" />
 		            </p:inputText>
 		            <p:message for="cep" />
 		
 		            <p:outputLabel for="estado" value="Estado:"/>
-		            <p:inputText id="estado" required="true" value="#{enderecoBean.endereco.estado}" requiredMessage="Estado é obrigatório!"/>
+		            <p:inputText id="estado" required="true" value="#{enderecoBean.endereco.estado}" requiredMessage="Estado é obrigatório!" size="40"/>
 		            <p:message for="estado" />
 		            
 		            <p:outputLabel for="cidade" value="Cidade:"/>
-		            <p:inputText id="cidade" required="true" value="#{enderecoBean.endereco.cidade}" requiredMessage="Cidade é obrigatório!"/>
+		            <p:inputText id="cidade" required="true" value="#{enderecoBean.endereco.cidade}" requiredMessage="Cidade é obrigatório!" size="40"/>
 		            <p:message for="cidade" />
 		            
 		            <p:outputLabel for="bairro" value="Bairro:"/>
-		            <p:inputText id="bairro" required="true" value="#{enderecoBean.endereco.bairro}" requiredMessage="Bairro é obrigatório!"/>
+		            <p:inputText id="bairro" required="true" value="#{enderecoBean.endereco.bairro}" requiredMessage="Bairro é obrigatório!" size="40"/>
 		            <p:message for="bairro" />
 		            
 		            <p:outputLabel for="logradouro" value="Logradouro:"/>
-		            <p:inputText id="logradouro" required="true" value="#{enderecoBean.endereco.logradouro}" requiredMessage="Logradouro é obrigatório!"/>
+		            <p:inputText id="logradouro" required="true" value="#{enderecoBean.endereco.logradouro}" requiredMessage="Logradouro é obrigatório!" size="40"/>
 		            <p:message for="logradouro" />
 		            
 		            <p:outputLabel for="numero" value="Número:"/>
-		            <p:inputText id="numero" required="true" value="#{enderecoBean.endereco.numero}" requiredMessage="Número é obrigatório!"/>
+		            <p:inputText id="numero" required="true" value="#{enderecoBean.endereco.numero}" requiredMessage="Número é obrigatório!" size="40"/>
 		            <p:message for="numero" />
 		            
 		        </h:panelGrid>
