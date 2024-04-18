@@ -1,5 +1,5 @@
 # Desafio Sinerji: Cadastro de pessoas
-## Marco Botelho Abreu
+## Desenvolvedor: Marco Botelho Abreu
 
 ## Uso de frameworks ou bibliotecas
 
@@ -17,7 +17,7 @@
 ## Instruções sobre como compilar e executar o projeto
 
 - Iniciar banco de dados Postgres executando no terminal na raiz do projeto o comando “docker-compose up”
-- Executar comando no terminal na raiz do projeto "mvn package" para geração do arquivo "cad-pessoas.war"
+- Executar comando no terminal na raiz do projeto "mvn package" para geração do arquivo "cad-pessoas/target/cad-pessoas.war"
 - Fazer o deploy do arquivo "cad-pessoas.war" no servidor Tomcat v9.0 e iniciar servidor
 - Acessar url "[servidor]/cad-pessoas" se for local "http://localhost:8080/cad-pessoas" 
 
