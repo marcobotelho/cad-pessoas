@@ -5,8 +5,8 @@
 
 	<groupId>com.marco</groupId>
 	<artifactId>cad-pessoas</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<version>0.0.1-SNAPSHOT</version> 
+	<packaging>war</packaging>
 
 	<name>cad-pessoas</name>
 	<url>http://maven.apache.org</url>
@@ -15,6 +15,46 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
+	<build>
+		<finalName>cad-pessoas</finalName>
+		
+		<testResources>
+		  <testResource>
+		    <directory>${project.basedir}/src/test/java</directory>
+		  </testResource>
+		  <testResource>
+		    <directory>${project.basedir}/src/test/resources</directory>
+		  </testResource>
+		</testResources>
+        
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.3</version>
+			</plugin>
+			<plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-surefire-plugin</artifactId>
+	            <version>2.19.1</version>
+	            <dependencies>
+	                <dependency>
+	                    <groupId>org.junit.jupiter</groupId>
+	                    <artifactId>junit-jupiter-engine</artifactId>
+	                    <version>5.5.2</version>
+	                </dependency>
+	            </dependencies>
+        	</plugin>
+		</plugins>
+
+	</build>
 	<dependencies>
 
 		<dependency>
@@ -119,43 +159,4 @@
 		</dependency>
 	</dependencies>
 
-	<build>
-		<finalName>cad-pessoas</finalName>
-		
-		<testResources>
-		  <testResource>
-		    <directory>${project.basedir}/src/test/java</directory>
-		  </testResource>
-		  <testResource>
-		    <directory>${project.basedir}/src/test/resources</directory>
-		  </testResource>
-		</testResources>
-        
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.1</version>
-
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-			
-			<plugin>
-	            <groupId>org.apache.maven.plugins</groupId>
-	            <artifactId>maven-surefire-plugin</artifactId>
-	            <version>2.19.1</version>
-	            <dependencies>
-	                <dependency>
-	                    <groupId>org.junit.jupiter</groupId>
-	                    <artifactId>junit-jupiter-engine</artifactId>
-	                    <version>5.5.2</version>
-	                </dependency>
-	            </dependencies>
-        	</plugin>
-		</plugins>
-
-	</build>
 </project>
