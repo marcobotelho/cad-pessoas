@@ -1,4 +1,5 @@
-# Desafio Sinerji: Cadastro de pessoas (Marco Botelho Abreu)
+# Desafio Sinerji: Cadastro de pessoas
+## Marco Botelho Abreu
 
 ## Uso de frameworks ou bibliotecas
 
